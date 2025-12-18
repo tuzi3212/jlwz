@@ -63,6 +63,10 @@ body {
   padding: 32px 20px 80px;
 }
 
+.body-text {
+  max-width: 720px;
+}
+
 /* 顶部导航 */
 
 
@@ -151,17 +155,26 @@ nav a:hover {
 }
 
 /* 按钮 */
-.btn-primary {
+.btn-primary,
+.btn-outline,
+.btn-ghost {
   padding: 11px 20px;
   font-size: 15px;
   font-weight: 600;
   border-radius: 999px;
-  border: none;
-  color: white;
-  background: var(--primary);
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,118,255,0.28);
   transition: 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-primary {
+  border: none;
+  color: #ffffff;
+  background: var(--primary);
+  box-shadow: 0 4px 12px rgba(0,118,255,0.28);
 }
 
 .btn-primary:hover {
@@ -171,22 +184,28 @@ nav a:hover {
 }
 
 .btn-outline {
-  padding: 11px 20px;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 999px;
-  border: none;
-  background: var(--primary);
-  color: #ffffff;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,118,255,0.28);
-  transition: 0.2s;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  background: transparent;
+  box-shadow: none;
 }
 
 .btn-outline:hover {
-  background: var(--primary-soft);
+  background: rgba(0,113,227,0.06);
   transform: translateY(-1px);
-  filter: brightness(1.05);
+}
+
+.btn-ghost {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  padding-inline: 10px;
+  font-weight: 500;
+}
+
+.btn-ghost:hover {
+  color: var(--primary);
+  transform: translateY(-1px);
 }
 
 /* 头像卡片 */
@@ -277,6 +296,13 @@ nav a:hover {
   flex-grow: 1;
   line-height: var(--lh-small);
   margin-bottom: 14px;
+}
+
+.project-highlight {
+  display: inline-block;
+  margin-bottom: 6px;
+  color: var(--text-main);
+  font-size: 13px;
 }
 
 .project-tech {
@@ -524,20 +550,38 @@ footer {
     padding-top: 12px;
   }
   /* Apple 统一胶囊标签系统（Tag / Pill） */
-  .tag,
-  .project-pill {
-    display: inline-block;
-    padding: 6px 14px;
-    font-size: 13px;
+.tag,
+.project-pill {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 13px;
     font-weight: 500;
     border-radius: 999px;
     background: #f5f5f7;
     border: 1px solid var(--border-subtle);
-    color: #1d1d1f;
-    margin-right: 6px;
-    margin-bottom: 8px;
-    transition: all .25s ease;
-  }
+  color: #1d1d1f;
+  margin-right: 6px;
+  margin-bottom: 8px;
+  transition: all .25s ease;
+}
+
+.pill-done {
+  background: #e7f8ec;
+  border-color: #c5ebd2;
+  color: #1f7a3c;
+}
+
+.pill-planning {
+  background: #fff6e5;
+  border-color: #ffe0b3;
+  color: #a66300;
+}
+
+.pill-progress {
+  background: #e8f1ff;
+  border-color: #c8ddff;
+  color: #1f5fb8;
+}
 
   .tag:hover,
   .project-pill:hover {
@@ -636,6 +680,14 @@ section {
 
 section:first-of-type {
   padding-top: 0;
+}
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  margin: 40px 0 32px;
+  background: var(--border-subtle);
+  opacity: 0.6;
 }
 /* Apple 风 About / Contact 卡片 */
 
@@ -763,26 +815,26 @@ section:first-of-type {
 <div class="page-wrap">
 
   <!-- 顶部导航 -->
-  <header class="sticky-nav">
-    <div class="logo-text-main">胡爽 · AI + 软件开发/全栈开发</div>
-    <nav>
-      <a href="#projects">作品集</a>
-      <a href="#skills">技能</a>
-      <a href="#about">关于我</a>
-      <a href="#contact">联系</a>
-    </nav>
-  </header>
+<header class="sticky-nav">
+  <div class="logo-text-main">胡爽 · AI + 软件开发/全栈开发</div>
+  <nav>
+    <a href="#projects" aria-label="跳转到作品集">作品集</a>
+    <a href="#skills" aria-label="跳转到技能栈">技能</a>
+    <a href="#about" aria-label="跳转到关于我">关于我</a>
+    <a href="#contact" aria-label="跳转到联系方式">联系</a>
+  </nav>
+</header>
 
   <!-- 顶部简介 -->
   <section class="hero">
     <div>
-      <div class="hero-title">
+      <div class="hero-title body-text">
         打造 <span>AI 赋能的软件与全栈开发体验</span>
       </div>
-      <div class="hero-subtitle">
+      <div class="hero-subtitle body-text">
         计算机应用技术在读，专注于 AI + 软件开发/全栈开发。通过 Vue、React、Python、FastAPI 等技术栈，构建智能 Web 应用和自动化工具，致力于为用户提供高效、创新的解决方案。
       </div>
-      <div class="hero-tags">
+      <div class="hero-tags body-text">
         <span class="tag tag-strong">AI + 软件开发/全栈开发</span>
         <span class="tag">Vue / React</span>
         <span class="tag">Python / FastAPI</span>
@@ -790,18 +842,18 @@ section:first-of-type {
         <span class="tag">Cloudflare 部署</span>
       </div>
       <div class="hero-actions">
-        <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+        <button class="btn-primary" aria-label="查看作品集" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
           查看作品集 →
         </button>
-        <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        <button class="btn-outline" aria-label="联系我" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
           联系我
         </button>
-        <a class="btn-primary" href="files/胡爽简历.pdf" target="_blank">在线查看简历</a>
+        <a class="btn-ghost" aria-label="在线查看简历" href="files/胡爽简历.pdf" target="_blank">在线查看简历</a>
       </div>
     </div>
 
     <aside class="hero-avatar-card avatar-small-card">
-  <img class="avatar-rounded" src="images/IMG_4092.JPG" alt="胡爽头像" />
+  <img class="avatar-rounded" src="images/IMG_4092.JPG" loading="lazy" alt="胡爽头像" />
   <div class="avatar-text-wrap">
     <div class="avatar-name">胡爽</div>
     <div class="avatar-role">AI + 软件开发/全栈开发</div>
@@ -810,6 +862,7 @@ section:first-of-type {
   </div>
 </aside>
   </section>
+  <div class="section-divider"></div>
 
   <!-- 作品集 -->
   <section id="projects">
@@ -824,11 +877,12 @@ section:first-of-type {
     <div class="projects-grid">
       <!-- 项目 1：Web AI 助手 -->
       <article class="project-card">
-        <div class="project-pill">
+        <div class="project-pill pill-done">
           ● 已完成 · Web 应用
         </div>
-        <div class="project-name">项目1</div>
+        <div class="project-name">AI 简历助手</div>
         <div class="project-desc">
+          <strong class="project-highlight">一键生成求职文档，支持简历与邮件多模板。</strong>
           通过前端技术实现简洁的用户界面，结合后端 API 提供智能推荐和数据处理功能，用户可以快速生成简历、求职邮件等。
         </div>
         <div class="project-tech">
@@ -849,11 +903,12 @@ section:first-of-type {
 
       <!-- 项目 2：城市推荐系统 -->
       <article class="project-card">
-        <div class="project-pill">
+        <div class="project-pill pill-done">
           ● 已完成 · 决策引擎
         </div>
-        <div class="project-name">项目2</div>
+        <div class="project-name">城市选址推荐引擎</div>
         <div class="project-desc">
+          <strong class="project-highlight">多维度评分，一键筛出最适合居住/创业的城市。</strong>
           利用 Vue 和 JavaScript 技术栈构建交互式 Web 界面，展示城市评分和推荐结果，提升用户体验。用户可以选择不同维度查看推荐城市。
         </div>
         <div class="project-tech">
@@ -868,77 +923,82 @@ section:first-of-type {
 
       <!-- 项目 3：燃气表识别小程序 -->
       <article class="project-card">
-        <div class="project-pill">
+        <div class="project-pill pill-done">
           ● 已完成 · 小程序 + 后台
         </div>
-        <div class="project-name">项目3</div>
+        <div class="project-name">燃气表识别小程序</div>
         <div class="project-desc">
+          <strong class="project-highlight">拍照上传即出读数，自动入库支持历史查询。</strong>
           通过一款上传燃气表照片即可自动识别读数的小程序，前端负责拍照/上传并展示识别结果，后端将数据写入数据库，支持历史记录查询与导出，减少人工抄表和录入错误。
         </div>
         <div class="project-tech">
           技术栈：微信小程序 / Python 后端（FastAPI）/ OCR / MySQL / 对象存储
         </div>
         <div class="project-links">
-          <a class="btn-outline" href="#" target="_blank" style="text-align: center;">演示视频</a>
-          <a class="btn-outline" href="#" target="_blank" style="text-align: center;">Demo</a>
-          <a href="#" target="_blank" class="btn-outline" style="display: flex; justify-content: center; align-items: center; text-align: center;">GitHub</a>
+          <a class="btn-outline" href="javascript:void(0)" style="text-align: center;">演示视频</a>
+          <a class="btn-outline" href="javascript:void(0)" style="text-align: center;">Demo</a>
+          <a href="javascript:void(0)" class="btn-outline" style="display: flex; justify-content: center; align-items: center; text-align: center;">GitHub</a>
         </div>
       </article>
 
       <!-- 项目 4：Python 自动化脚本合集 -->
       <article class="project-card">
-        <div class="project-pill">
+        <div class="project-pill pill-planning">
           ● 规划中 · 自动化工具库
         </div>
-        <div class="project-name">项目4</div>
+        <div class="project-name">Python 自动化脚本库</div>
         <div class="project-desc">
+          <strong class="project-highlight">批量处理文件/文案/数据，CLI 一键执行。</strong>
           提升工作效率，完成文件整理、文案处理、数据转换等任务，并为前端项目提供支持。
         </div>
         <div class="project-tech">
           技术栈：Python / CLI 工具 / OpenAI API / 数据处理
         </div>
         <div class="project-links">
-          <a class="btn-outline" href="#" target="_blank" style="text-align: center;">演示视频</a>
-          <a class="btn-outline" href="#" target="_blank" style="text-align: center;">Demo</a>
-          <a href="#" target="_blank" class="btn-outline" style="display: flex; justify-content: center; align-items: center; text-align: center;">GitHub</a>
+          <a class="btn-outline" href="javascript:void(0)" style="text-align: center;">演示视频</a>
+          <a class="btn-outline" href="javascript:void(0)" style="text-align: center;">Demo</a>
+          <a href="javascript:void(0)" class="btn-outline" style="display: flex; justify-content: center; align-items: center; text-align: center;">GitHub</a>
         </div>
       </article>
 
       <!-- 项目 5：学习计划生成器 -->
       <article class="project-card">
-        <div class="project-pill">● 规划中 · AI 工具</div>
-        <div class="project-name">项目5</div>
+        <div class="project-pill pill-planning">● 规划中 · AI 工具</div>
+        <div class="project-name">学习计划生成器</div>
         <div class="project-desc">
+          <strong class="project-highlight">输入目标，输出可执行的每日学习清单。</strong>
           输入科目、时间与学习目标后，自动生成每日学习计划，让学习过程更可控。该工具结合 GPT API 和简单的前端交互设计，帮助用户规划学习。
         </div>
         <div class="project-tech">
           技术栈：Vue / GPT API / FastAPI / 简易 Web 界面
         </div>
         <div class="project-links">
-          <a class="btn-outline" href="#" target="_blank" style="text-align: center;">演示视频</a>
-          <a class="btn-outline" href="#" target="_blank" style="text-align: center;">Demo</a>
-          <a href="#" target="_blank" class="btn-outline" style="display: flex; justify-content: center; align-items: center; text-align: center;">GitHub</a>
+          <a class="btn-outline" href="javascript:void(0)" style="text-align: center;">演示视频</a>
+          <a class="btn-outline" href="javascript:void(0)" style="text-align: center;">Demo</a>
+          <a href="javascript:void(0)" class="btn-outline" style="display: flex; justify-content: center; align-items: center; text-align: center;">GitHub</a>
         </div>
       </article>
 
       <!-- 项目 6：简历自动排版工具 -->
       <article class="project-card">
-        <div class="project-pill">● 开发中 · 脚本工具</div>
-        <div class="project-name">项目6</div>
+        <div class="project-pill pill-progress">● 开发中 · 脚本工具</div>
+        <div class="project-name">简历自动排版工具</div>
         <div class="project-desc">
+          <strong class="project-highlight">输入文本即可生成统一排版的 PDF 简历。</strong>
           一键输入内容自动生成排版规范、格式统一的简历 PDF，提高求职效率。该工具实现了简历内容的标准化和格式统一，帮助求职者快速生成专业简历。
         </div>
         <div class="project-tech">
           技术栈：Python / CLI 工具 / PDF 生成 / 格式化处理
         </div>
         <div class="project-links">
-          <a class="btn-outline" href="#" target="_blank" style="text-align: center;">演示视频</a>
-          <a class="btn-outline" href="#" target="_blank" style="text-align: center;">Demo</a>
-          <a href="#" target="_blank" class="btn-outline" style="display: flex; justify-content: center; align-items: center; text-align: center;">GitHub</a>
+          <a class="btn-outline" href="javascript:void(0)" style="text-align: center;">演示视频</a>
+          <a class="btn-outline" href="javascript:void(0)" style="text-align: center;">Demo</a>
+          <a href="javascript:void(0)" class="btn-outline" style="display: flex; justify-content: center; align-items: center; text-align: center;">GitHub</a>
         </div>
       </article>
     </div>
   </section>
+  <div class="section-divider"></div>
 
   <!-- 技能 -->
   <section id="skills">
@@ -972,9 +1032,9 @@ section:first-of-type {
   </section>
 
   <!-- 关于我 + 联系方式 -->
-  <section id="about">
-    <div class="section-header">
-      <div class="section-title">关于我 About</div>
+<section id="about">
+  <div class="section-header">
+    <div class="section-title">关于我 About</div>
       <div class="section-desc">一点背景介绍，让你知道我是谁，以及我在做什么。</div>
     </div>
 
@@ -1063,45 +1123,37 @@ document.querySelectorAll('a[href^="#"], button[href^="#"]').forEach(el => {
   });
 });
 
-// 按钮轻触波纹动画
-document.querySelectorAll("button, .btn-primary, .btn-outline").forEach(btn => {
-  btn.style.position = "relative";
-  btn.style.overflow = "hidden";
-  btn.addEventListener("click", function(e) {
-    const ripple = document.createElement("span");
-    ripple.style.position = "absolute";
-    ripple.style.width = ripple.style.height = "120px";
-    ripple.style.background = "rgba(255,255,255,0.35)";
-    ripple.style.borderRadius = "999px";
-    ripple.style.pointerEvents = "none";
-    ripple.style.transform = "scale(0)";
-    ripple.style.opacity = "0.75";
-    ripple.style.transition = "transform 0.45s ease, opacity 0.45s ease";
+// 按钮轻触波纹动画（桌面端启用，移动端禁用，禁用按钮跳过）
+const isMobile = window.matchMedia("(max-width: 800px)").matches;
+if (!isMobile) {
+  document.querySelectorAll("button, .btn-primary, .btn-outline").forEach(btn => {
+    if (btn.classList.contains("btn-disabled")) return;
+    btn.style.position = "relative";
+    btn.style.overflow = "hidden";
+    btn.addEventListener("click", function(e) {
+      const ripple = document.createElement("span");
+      ripple.style.position = "absolute";
+      ripple.style.width = ripple.style.height = "120px";
+      ripple.style.background = "rgba(255,255,255,0.35)";
+      ripple.style.borderRadius = "999px";
+      ripple.style.pointerEvents = "none";
+      ripple.style.transform = "scale(0)";
+      ripple.style.opacity = "0.75";
+      ripple.style.transition = "transform 0.45s ease, opacity 0.45s ease";
 
-    const rect = this.getBoundingClientRect();
-    ripple.style.left = e.clientX - rect.left - 60 + "px";
-    ripple.style.top = e.clientY - rect.top - 60 + "px";
+      const rect = this.getBoundingClientRect();
+      ripple.style.left = e.clientX - rect.left - 60 + "px";
+      ripple.style.top = e.clientY - rect.top - 60 + "px";
 
-    this.appendChild(ripple);
-    requestAnimationFrame(() => {
-      ripple.style.transform = "scale(1)";
-      ripple.style.opacity = "0";
+      this.appendChild(ripple);
+      requestAnimationFrame(() => {
+        ripple.style.transform = "scale(1)";
+        ripple.style.opacity = "0";
+      });
+      setTimeout(() => ripple.remove(), 450);
     });
-    setTimeout(() => ripple.remove(), 450);
   });
-});
+}
 </script>
 </body>
 </html>
-<script>
-  function toggleVideo(event) {
-    event.preventDefault(); // Prevent default link behavior
-    const videoDiv = document.querySelector('.project-video');
-    // Toggle visibility using style display
-    if (videoDiv.style.display === "none") {
-      videoDiv.style.display = "block";
-    } else {
-      videoDiv.style.display = "none";
-    }
-  }
-</script>
